@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <th scope="col">
-            <button type="button" class="btn btn-primary" @click="crearNuevo()">
+            <button type="button" class="btn btn-primary" @click="addItem()">
               Guardar
             </button>
           </th>
@@ -177,10 +177,10 @@
   </div>
 </template>
 
-<script lang="javascript">
-import { CEFRLevels, levels } from "@/shared/constants"
-import Course from "@/features/course.model";
-import axios from 'axios';
+<script>
+import { CEFRLevels, levels } from "@/shared/constants";
+import Course from "@/features/Course.model";
+import axios from "axios";
 
 export default {
   name: "CoursesList",
@@ -194,6 +194,7 @@ export default {
       CEFRLevels,
       levels,
       newID: 0,
+      newName: "",
       newLevelName: "",
       newCEFR: "",
       newDescription: "",
@@ -201,6 +202,7 @@ export default {
       newYear: "",
       newVersion: "",
       newItem: null,
+      editName: "",
       editLevelName: "",
       editCEFR: "",
       editDescription: "",
@@ -261,17 +263,25 @@ export default {
       }
     },
     */
-    createItem(value) {
-      this.axios
-        .post(process.env.VUE_APP_API_URL + "/courses", value)
-        .then((response) => {
-          //this.cerrarModal();
-          this.obtenerLista();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }/*,
+    assignID() {
+      if (this.items.length === 0) return 1;
+      const maxId = Math.max(...this.items.map((c) => c.id));
+      return maxId + 1;
+    },
+
+    addItem() {
+      this.newItem = new Course(
+        this.assignID(),
+        this.newName,
+        this.newLevelName,
+        this.newCEFR,
+        this.newDescription,
+        this.newMonth,
+        this.newYear,
+        this.newVersion
+      );
+      this.saveItem(this.newItem);
+    } /*,
     abrirModalParaEditar(item) {
       this.itemSeleccionado = { ...item };
       this.modalMode = "none";
@@ -307,7 +317,18 @@ export default {
           });
       }
     },
-    */
+    */,
+    saveItem(value) {
+      axios
+        .post(process.env.VUE_APP_API_URL + "/courses", value)
+        .then((response) => {
+          this.obtenerLista();
+          this.new = null;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
   computed: {
     // propiedades computadas que dependen de otras propiedades reactivas
