@@ -1,0 +1,70 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Inglés A1",
+      "level": "Iniciante",
+      "CEFR": "A1",
+      "description": "Inglés para principiantes",
+      "month": 7,
+      "year": 2025,
+      "version": 1
+    },
+    {
+      "id": 2,
+      "name": "Inglés A2",
+      "level": "Iniciante a intermedio",
+      "CEFR": "A2",
+      "description": "Inglés para estudiantes con base en inglés",
+      "month": 7,
+      "year": 2025,
+      "version": 1
+    },
+    {
+      "id": 3,
+      "name": "Alemán",
+      "level": "Iniciante",
+      "CEFR": "A1",
+      "description": "Alemán para principiantes",
+      "month": 7,
+      "year": 2025,
+      "version": 1
+    },
+    {
+      "id": 4,
+      "name": "Inglés Speaking and listening",
+      "level": "Iniciante",
+      "CEFR": "A1",
+      "description": "Inglés básico dedicado en conversar, escuchar y pronunciación",
+      "month": 7,
+      "year": 2025,
+      "version": 1
+    },
+    {
+      "id": 5,
+      "name": "Inglés Reading and Writing",
+      "level": "Iniciante",
+      "CEFR": "A1",
+      "description": "Inglés básico dedicado en escritura, lectura y redacción",
+      "month": 7,
+      "year": 2025,
+      "version": 1
+    }
+  ],
+  "student": [
+    {
+      "id": 1,
+      "firstName": "Sergio",
+      "middleName": "",
+      "firstlastName": "Rivera",
+      "secondLastName": "Mai"
+    },
+    {
+      "id": 2,
+      "firstName": "Edson",
+      "middleName": "",
+      "firstlastName": "Céspedes",
+      "secondLastName": "Acuña"
+    }
+  ]
+}
