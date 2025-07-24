@@ -70,10 +70,11 @@
           </th>
           <th>
             <input
-              type="text"
+              type="number"
               v-model="newVersion"
               class="form-control"
               placeholder="Ingresar versión"
+              @input="validateVersion"
             />
           </th>
         </tr>
@@ -200,7 +201,7 @@ export default {
       newDescription: "",
       newMonth: "",
       newYear: "",
-      newVersion: "",
+      newVersion: 0,
       newItem: null,
       editName: "",
       editLevelName: "",
@@ -270,17 +271,27 @@ export default {
     },
 
     addItem() {
-      this.newItem = new Course(
-        this.assignID(),
-        this.newName,
-        this.newLevelName,
-        this.newCEFR,
-        this.newDescription,
-        this.newMonth,
-        this.newYear,
-        this.newVersion
-      );
-      this.saveItem(this.newItem);
+      if (
+        this.newName != "" &&
+        this.newLevelName != "" &&
+        this.newCEFR != "" &&
+        this.newDescription != "" &&
+        this.newMonth != "" &&
+        this.newYear != "" &&
+        this.newVersion != null
+      ) {
+        this.newItem = new Course(
+          this.assignID(),
+          this.newName,
+          this.newLevelName,
+          this.newCEFR,
+          this.newDescription,
+          this.newMonth,
+          this.newYear,
+          this.newVersion
+        );
+        this.saveItem(this.newItem);
+      }
     } /*,
     abrirModalParaEditar(item) {
       this.itemSeleccionado = { ...item };
@@ -328,6 +339,11 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    validateVersion() {
+      if (this.newVersion < 0) {
+        this.newVersion = 0;
+      }
     },
   },
   computed: {

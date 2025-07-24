@@ -9,8 +9,4 @@ export default class Course {
     this.year = year;
     this.version = version;
   }
-
-  printName() {
-    console.log(`Name: ${this.name}`);
-  }
 }
