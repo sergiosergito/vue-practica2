@@ -8,7 +8,7 @@
       "description": "Inglés para principiantes",
       "month": 7,
       "year": 2025,
-      "version": 1
+      "version": 2
     },
     {
       "id": 2,
@@ -18,11 +18,11 @@
       "description": "Inglés para estudiantes con base en inglés",
       "month": 7,
       "year": 2025,
-      "version": 1
+      "version": 2
     },
     {
       "id": 3,
-      "name": "Alemán",
+      "name": "Alemán A1",
       "level": "Iniciante",
       "CEFR": "A1",
       "description": "Alemán para principiantes",
@@ -52,43 +52,43 @@
     },
     {
       "id": 6,
-      "name": "aaa",
-      "level": "Iniciante",
-      "CEFR": "A1",
-      "description": "aaaa",
+      "name": "Ingles B1",
+      "level": "preintermedio",
+      "CEFR": "B1",
+      "description": "Ingles pre intermedio",
       "month": "7",
       "year": "2025",
-      "version": "1"
+      "version": 2
     },
     {
       "id": 7,
-      "name": "bbb",
-      "level": "Iniciante",
-      "CEFR": "A1",
-      "description": "bbbb",
-      "month": "8",
+      "name": "Ingles B1",
+      "level": "preintermedio",
+      "CEFR": "B1",
+      "description": "Ingles pre intermedio",
+      "month": "6",
       "year": "2026",
       "version": 1
     },
     {
       "id": 8,
-      "name": "ccc",
+      "name": "Ingles A1",
       "level": "Iniciante",
       "CEFR": "A1",
-      "description": "ccc",
-      "month": "8",
-      "year": "2026",
-      "version": 0
+      "description": "Ingles para principiantes",
+      "month": "6",
+      "year": "2025",
+      "version": 1
     },
     {
       "id": 9,
-      "name": "ddd",
-      "level": "Iniciante",
-      "CEFR": "A1",
-      "description": "ddd",
-      "month": "8",
-      "year": "2026",
-      "version": 0.3
+      "name": "Ingles A2",
+      "level": "Principiante",
+      "CEFR": "A2",
+      "description": "Ingles para principiantes",
+      "month": "6",
+      "year": "2025",
+      "version": 1
     }
   ],
   "student": [

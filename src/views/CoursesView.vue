@@ -74,7 +74,7 @@
               v-model="newVersion"
               class="form-control"
               placeholder="Ingresar versión"
-              @input="validateVersion"
+              @input="validateVersion()"
             />
           </th>
         </tr>
@@ -83,7 +83,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              @click="confirmarEditar()"
+              @click="validateEdit()"
             >
               Editar
             </button>
@@ -138,10 +138,11 @@
           </th>
           <th>
             <input
-              type="text"
+              type="number"
               v-model="editVersion"
               class="form-control"
               placeholder="Ingresar versión"
+              @input="validateEditVersion()"
             />
           </th>
         </tr>
@@ -203,13 +204,14 @@ export default {
       newYear: "",
       newVersion: 0,
       newItem: null,
+      editItem: null,
       editName: "",
       editLevelName: "",
       editCEFR: "",
       editDescription: "",
       editMonth: "",
       editYear: "",
-      editVersion: "",
+      editVersion: 0,
       filterName: "",
     };
   },
@@ -292,7 +294,8 @@ export default {
         );
         this.saveItem(this.newItem);
       }
-    } /*,
+    },
+    /*
     abrirModalParaEditar(item) {
       this.itemSeleccionado = { ...item };
       this.modalMode = "none";
@@ -305,17 +308,55 @@ export default {
         }
       });
     },
-    modificar(value) {
-      this.axios
-        .patch(process.env.VUE_APP_API_URL + "/usuarios/" + value.id, value)
+    */
+    startEditing(item) {
+      this.editID = item.id;
+      this.editName = item.name;
+      this.editLevelName = item.level;
+      this.editCEFR = item.CEFR;
+      this.editDescription = item.description;
+      this.editMonth = item.month;
+      this.editYear = item.year;
+      this.editVersion = item.version;
+    },
+
+    validateEdit() {
+      if (
+        this.editID != 0 &&
+        this.editName != "" &&
+        this.editLevelName != "" &&
+        this.editCEFR != "" &&
+        this.editDescription != "" &&
+        this.editMonth != "" &&
+        this.editYear != "" &&
+        this.editVersion != null
+      ) {
+        this.editItem = new Course(
+          this.editID,
+          this.editName,
+          this.editLevelName,
+          this.editCEFR,
+          this.editDescription,
+          this.editMonth,
+          this.editYear,
+          this.editVersion
+        );
+        this.updateItem(this.editItem);
+      }
+    },
+    updateItem(value) {
+      axios
+        .put(process.env.VUE_APP_API_URL + "/courses/" + value.id, value)
         .then((response) => {
-          this.cerrarModal();
           this.obtenerLista();
+          this.cleanFields();
+          this.editItem = null;
         })
         .catch((error) => {
           console.error(error);
         });
     },
+    /*
     eliminar(value) {
       if (confirm("¿Está seguro de eliminar este ítem?")) {
         this.axios
@@ -328,7 +369,7 @@ export default {
           });
       }
     },
-    */,
+    */
     saveItem(value) {
       axios
         .post(process.env.VUE_APP_API_URL + "/courses", value)
@@ -344,6 +385,21 @@ export default {
       if (this.newVersion < 0) {
         this.newVersion = 0;
       }
+    },
+    validateEditVersion() {
+      if (this.editVersion < 0) {
+        this.editVersion = 0;
+      }
+    },
+    cleanFields() {
+      this.editID = 0;
+      this.editName = "";
+      this.editLevelName = "";
+      this.editCEFR = "";
+      this.editDescription = "";
+      this.editMonth = "";
+      this.editYear = "";
+      this.editVersion = "";
     },
   },
   computed: {
