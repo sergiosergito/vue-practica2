@@ -1,0 +1,9 @@
+Practica 2 Vue3
+Nombre de integrante:
+- Sergio Rivera Mai
+
+Pasos para iniciar el proyecto:
+1) npm run install
+2) npm run serve
+3) crear .env.local y copiar contenido de .env.sample a .env.local
+4) json-server --watch db.json --port 4000
