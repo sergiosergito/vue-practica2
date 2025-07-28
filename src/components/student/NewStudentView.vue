@@ -1,12 +1,42 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <div>
-      <label class="form-label">Primer nombre</label>
+    <div class="mb-3">
+      <label class="form-label">Agregar estudiante</label>
       <input
         v-model="student.firstName"
         type="text"
         class="form-control"
+        placeholder="Ingresar Primer nombre"
         :class="{ 'is-invalid': v$.student.firstName.$error }"
+      />
+      <div class="invalid-feedback">Ingrese Primer Nombre</div>
+    </div>
+    <div class="mb-3">
+      <input
+        v-model="student.middleName"
+        type="text"
+        class="form-control"
+        placeholder="Segundo nombre (opcional)"
+        :class="{ 'is-invalid': v$.student.middleName.$error }"
+      />
+    </div>
+    <div class="mb-3">
+      <input
+        v-model="student.firstLastName"
+        type="text"
+        class="form-control"
+        placeholder="Ingresar Primer Apellido"
+        :class="{ 'is-invalid': v$.student.firstLastName.$error }"
+      />
+      <div class="invalid-feedback">Ingrese Primer Primer Apellido</div>
+    </div>
+    <div class="mb-3">
+      <input
+        v-model="student.secondLastName"
+        type="text"
+        class="form-control"
+        placeholder="Segundo Apellido (opcional)"
+        :class="{ 'is-invalid': v$.student.secondLastName.$error }"
       />
       <div class="invalid-feedback">Primer nombre es obligatorio</div>
     </div>
@@ -18,17 +48,18 @@
 <script>
 import { reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
-import { required, minValue, maxValue, url } from "@vuelidate/validators";
+import { required } from "@vuelidate/validators";
 export default {
   name: "NewStudentView",
   data() {
     return {
       title: " NuevoAuto",
-      auto: reactive({
+      student: reactive({
         firstName: "",
         middleName: "",
         firstLastName: "",
         secondLastName: "",
+        isCreate: false,
       }),
       v$: null,
     };

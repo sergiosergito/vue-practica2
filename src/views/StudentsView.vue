@@ -1,6 +1,12 @@
 <template>
   <div class="students">
     <h1>Estudiantes</h1>
+
+    <NewStudentView
+      v-if="modalMode == 'crear'"
+      @created="saveItem($event)"
+    ></NewStudentView>
+
     <table class="table table-bordered border-primary">
       <thead>
         <tr>
@@ -27,10 +33,49 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Modal Bootstrap -->
+  <div
+    class="modal fade"
+    id="modalAutoEditar"
+    tabindex="-1"
+    aria-labelledby="modalAutoEditarLabel"
+    aria-hidden="true"
+    ref="modalRef"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalAutoEditarLabel">Editar Auto</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Cerrar"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Componente AutoEditar -->
+          <AutoEditar
+            v-if="modalMode == 'editar' && autoSeleccionado"
+            :auto="autoSeleccionado"
+            @update="guardarEdicion"
+            @cancelar="cerrarModal"
+          />
+          <NuevoAutoView
+            v-if="modalMode == 'crear'"
+            @created="agregarNuevo($event)"
+          ></NuevoAutoView>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import NewStudentView from "@/components/student/NewStudentView.vue";
 import axios from "axios";
+import * as bootstrap from "bootstrap";
 
 export default {
   name: "StudentsList",
@@ -57,13 +102,20 @@ export default {
   components: {
     // Registro de componentes que se utilizaran.
     //EstudiantesCrear,
-    //EstudiantesEditar,
+    NewStudentView,
   },
   created() {
     // Componente creado
   },
   mounted() {
     this.obtenerLista();
+    this.$nextTick(() => {
+      if (this.$refs.modalRef) {
+        this.modalBootstrapInstance = new bootstrap.Modal(this.$refs.modalRef);
+      } else {
+        console.error("No se encontró el ref modalRef");
+      }
+    });
   },
   updated() {
     // Componente actualizado
@@ -82,8 +134,8 @@ export default {
           console.error(error);
         });
     },
-    /*
-    abrirModalParaCrear() {
+
+    goToNew() {
       this.modalMode = "crear";
       if (this.modalBootstrapInstance) {
         this.modalBootstrapInstance.show();
@@ -91,12 +143,25 @@ export default {
         console.error("modalBootstrapInstance no está inicializado");
       }
     },
+    abrirModal(index) {
+      this.autoSeleccionado = null;
+      this.indiceSeleccionado = index;
+      this.modalMode = "editar";
+      setTimeout(() => {
+        if (this.modalBootstrapInstance) {
+          this.modalBootstrapInstance.show();
+          this.autoSeleccionado = { ...this.items[index] };
+        } else {
+          console.error("modalBootstrapInstance no está inicializado");
+        }
+      });
+    },
     cerrarModal() {
       if (this.modalBootstrapInstance) {
         this.modalBootstrapInstance.hide();
       }
     },
-    */
+
     assignID() {
       if (this.items.length === 0) return 1;
       const maxId = Math.max(...this.items.map((c) => c.id));
