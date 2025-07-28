@@ -1,6 +1,13 @@
 <template>
   <div class="courses">
     <h1>Cursos</h1>
+    <p>Filtrar</p>
+    <input
+      type="text"
+      v-model="filterName"
+      class="form-control mb-3"
+      placeholder="Filtrar"
+    />
     <table class="table table-bordered border-primary">
       <thead>
         <tr>
@@ -148,7 +155,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="item.id">
+        <tr v-for="(item, index) in itemsFiltrados" :key="item.id">
           <th scope="row">{{ item.id }}</th>
           <td>{{ item.name }}</td>
           <td>{{ item.level }}</td>
@@ -403,7 +410,12 @@ export default {
     },
   },
   computed: {
-    // propiedades computadas que dependen de otras propiedades reactivas
+    itemsFiltrados() {
+      if (!this.filterName.trim()) return this.items;
+      return this.items.filter((item) =>
+        item.name.toLowerCase().includes(this.filterName.toLowerCase())
+      );
+    },
   },
   props: {
     // propiedades que el componente puede recibir.

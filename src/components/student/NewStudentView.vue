@@ -53,7 +53,7 @@ export default {
   name: "NewStudentView",
   data() {
     return {
-      title: " NuevoAuto",
+      title: " nuevoEstudiante",
       student: reactive({
         firstName: "",
         middleName: "",

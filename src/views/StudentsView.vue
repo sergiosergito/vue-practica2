@@ -1,7 +1,13 @@
 <template>
   <div class="students">
     <h1>Estudiantes</h1>
-
+    <p>Filtrar</p>
+    <input
+      type="text"
+      v-model="filterName"
+      class="form-control mb-3"
+      placeholder="Filtrar"
+    />
     <NewStudentView
       v-if="modalMode == 'crear'"
       @created="saveItem($event)"
@@ -19,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="item.id">
+        <tr v-for="(item, index) in itemsFiltrados" :key="item.id">
           <th scope="row">{{ item.id }}</th>
           <td>{{ item.firstName }}</td>
           <td>{{ item.middleName }}</td>
@@ -97,6 +103,7 @@ export default {
       editMiddleName: "",
       editFirstLastName: "",
       editSecondLastName: "",
+      filterName: "",
     };
   },
   components: {
@@ -257,7 +264,12 @@ export default {
     },
   },
   computed: {
-    // propiedades computadas que dependen de otras propiedades reactivas
+    itemsFiltrados() {
+      if (!this.filterName.trim()) return this.items;
+      return this.items.filter((item) =>
+        item.firstName.toLowerCase().includes(this.filterName.toLowerCase())
+      );
+    },
   },
   props: {
     // propiedades que el componente puede recibir.
