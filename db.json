@@ -91,7 +91,7 @@
       "version": 1
     }
   ],
-  "student": [
+  "students": [
     {
       "id": 1,
       "firstName": "Sergio",
@@ -125,8 +125,37 @@
       "middleName": "",
       "firstLastName": "Rocabado",
       "secondLastName": "",
-      "isCreate": false,
       "id": 5
+    }
+  ],
+  "registered": [
+    {
+      "courseId": 1,
+      "studentId": 1,
+      "grades": 60,
+      "approved": "aprobado",
+      "id": 1
+    },
+    {
+      "courseId": 1,
+      "studentId": 2,
+      "grades": 70,
+      "approved": "aprobado",
+      "id": 2
+    },
+    {
+      "courseId": 1,
+      "studentId": 3,
+      "grades": 80,
+      "approved": "aprobado",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "courseId": 4,
+      "studentId": 2,
+      "grades": 0,
+      "approved": "No aprobado"
     }
   ]
 }

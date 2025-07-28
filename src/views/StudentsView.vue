@@ -133,7 +133,7 @@ export default {
   methods: {
     obtenerLista() {
       axios
-        .get(process.env.VUE_APP_API_URL + "/student")
+        .get(process.env.VUE_APP_API_URL + "/students")
         .then((response) => {
           this.items = response.data;
         })
@@ -253,7 +253,7 @@ export default {
     */
     saveItem(value) {
       axios
-        .post(process.env.VUE_APP_API_URL + "/student", value)
+        .post(process.env.VUE_APP_API_URL + "/students", value)
         .then((response) => {
           this.obtenerLista();
           this.new = null;

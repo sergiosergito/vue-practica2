@@ -17,6 +17,11 @@ const routes = [
     name: "Estudiantes",
     component: () => import("../views/StudentsView.vue"),
   },
+  {
+    path: "/registered",
+    name: "Registrados",
+    component: () => import("../views/RegisteredView.vue"),
+  },
 ];
 
 const router = createRouter({
