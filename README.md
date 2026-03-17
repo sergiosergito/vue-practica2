@@ -1,28 +1,69 @@
-# practica2-cursos
+# 📚 Courses Management App
 
-Nombre de integrante:
-Sergio Rivera Mai
+- **University:** USIP
+- **Program:** Full Stack Web development
+- **Course:** Vue.Js Front-end
+- **Author:** Sergio Rivera Mai
 
-## Pasos 1 al 2
+## 📖 Overview
 
+This project is a simple courses management application built as a practice project.  
+It demonstrates basic frontend functionality and interaction with a mock API in a JSON file.
+
+### ✨Features
+
+- Manage Courses.
+- Manage Students.
+- Manage Enrollment of students in courses.
+
+## 🧠 Notes
+
+This project was created for learning purposes.
+
+It includes basic API interaction using a local mock server.
+
+## ⚙️ Tech Stack
+
+- Vue.js (Frontend)
+- json-server (Mock Backend)
+- Node.js
+
+---
+
+## 🚀 Getting Started
+
+### 0️⃣ Install dependencies
+
+```bash
+npm install
 ```
+
+### 1️⃣ Install dependencies
+
+```bash
 npm install
 npm run serve
 ```
 
-### Paso 3
+### 2️⃣ Run server
 
-```
-crear .env.local y copiar contenido de .env.sample a .env.local
-```
-
-### Paso 4
-
-```
-json-server --watch db.json --port 4000
+```bash
+npm run serve
 ```
 
-### Repositorio git
+### 3️⃣ Manage files
+
+```
+Create "env.local" and copy its content in "env.sample" to "env.local"
+```
+
+### 4️⃣ Run command
+
+```bash
+npx json-server --watch db.json --port 4000
+```
+
+### 🔗Git repository
 
 ```
 https://github.com/sergiosergito/vue-practica2.git
