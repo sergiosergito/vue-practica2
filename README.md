@@ -30,19 +30,18 @@ It includes basic API interaction using a local mock server.
 
 ---
 
-## 🚀 Getting Started
+### 🔗Git repository
 
-### 0️⃣ Install dependencies
-
-```bash
-npm install
 ```
+https://github.com/sergiosergito/vue-practica2.git
+```
+
+## 🚀 Getting Started
 
 ### 1️⃣ Install dependencies
 
 ```bash
 npm install
-npm run serve
 ```
 
 ### 2️⃣ Run server
@@ -63,8 +62,14 @@ Create "env.local" and copy its content in "env.sample" to "env.local"
 npx json-server --watch db.json --port 4000
 ```
 
-### 🔗Git repository
+## 📋 Recomendations
 
-```
-https://github.com/sergiosergito/vue-practica2.git
-```
+The following recommendations for this project are:
+
+- Improve UI/UX design
+
+- Add authentication
+
+- Replace mock API with a real backend
+
+- Improve documentation and structure
